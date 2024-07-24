@@ -1,7 +1,9 @@
 # The Odin Project - Rock Paper Scissors
 
 This is one of the project from `The Odin Projects's` Foundations course.
+
 It's about creating a program (or) a game called **Rock Paper Scissors**.
+
 In order to create this game, `JavaScript` programming language was used as a logical language.
 
 ## Objective
