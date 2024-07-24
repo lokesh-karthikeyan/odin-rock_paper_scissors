@@ -9,3 +9,21 @@ function getComputerChoice() {
     return "scissors";
   }
 }
+
+function getHumanChoice() {
+  let userChoice = prompt("Enter your choice: ");
+  userChoice = userChoice.toLowerCase();
+
+  if (userChoice === "" || null || undefined) {
+    alert("Please enter the valid choice");
+    userChoice = getHumanChoice();
+  } else if (
+    userChoice !== "rock" &&
+    userChoice !== "paper" &&
+    userChoice !== "scissors"
+  ) {
+    alert("Please enter the valid choice");
+    userChoice = getHumanChoice();
+  }
+  return userChoice;
+}
