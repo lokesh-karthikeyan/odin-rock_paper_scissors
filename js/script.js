@@ -1,6 +1,10 @@
 let humanScore = 0;
 let computerScore = 0;
 
+/**********************************************************
+ * Function objective: It's to return random values.      *
+ **********************************************************/
+
 function getComputerChoice() {
   let randomNumber = Math.floor(Math.random() * 3) + 1;
 
@@ -13,10 +17,15 @@ function getComputerChoice() {
   }
 }
 
+/*******************************************************
+ * Function objective: To get user's input values.     *
+ *******************************************************/
+
 function getHumanChoice() {
-  let userChoice = prompt("Enter your choice: ");
+  let userChoice = prompt("Enter your choice from 'Rock' 'Paper' 'Scissors': ");
   userChoice = userChoice.toLowerCase();
 
+  // Function calls recursively if the input in "falsy" or 'incorrect' values.
   if (userChoice === "" || null || undefined) {
     alert("Please enter the valid choice");
     userChoice = getHumanChoice();
@@ -30,6 +39,10 @@ function getHumanChoice() {
   }
   return userChoice;
 }
+
+/*****************************************************************
+ * Function objective: To compare user's & computer's input.     *
+ *****************************************************************/
 
 function playRound(computerChoice, humanChoice) {
   if (computerChoice === humanChoice) {
@@ -61,6 +74,10 @@ function playRound(computerChoice, humanChoice) {
   }
 }
 
+/***********************************************************************************
+ * Function objective: It's a helper function to call "input comparison" function  *
+ ***********************************************************************************/
+
 function playGame() {
   playRound(getComputerChoice(), getHumanChoice());
   playRound(getComputerChoice(), getHumanChoice());
@@ -68,6 +85,10 @@ function playGame() {
   playRound(getComputerChoice(), getHumanChoice());
   playRound(getComputerChoice(), getHumanChoice());
 }
+
+/******************************************************************
+ * Function objective: It's to calculate the player's scores.     *
+ ******************************************************************/
 
 function scoreCalculator() {
   if (humanScore === computerScore) {
