@@ -61,7 +61,29 @@ function playRound(computerChoice, humanChoice) {
   }
 }
 
-const computerSelection = getComputerChoice();
-const humanSelection = getHumanChoice();
+function playGame() {
+  playRound(getComputerChoice(), getHumanChoice());
+  playRound(getComputerChoice(), getHumanChoice());
+  playRound(getComputerChoice(), getHumanChoice());
+  playRound(getComputerChoice(), getHumanChoice());
+  playRound(getComputerChoice(), getHumanChoice());
+}
 
-playRound(computerSelection, humanSelection);
+function scoreCalculator() {
+  if (humanScore === computerScore) {
+    console.log("THE GAME IS TIED");
+  } else if (computerScore > humanScore) {
+    console.log("YOU LOSE!!");
+    console.log(
+      `Your score is = ${humanScore}, and the computer's score is = ${computerScore}`,
+    );
+  } else if (computerScore < humanScore) {
+    console.log("YEAH! YOU WIN!!!");
+    console.log(
+      `Your score is = ${humanScore}, and the computer's score is = ${computerScore}`,
+    );
+  }
+}
+
+playGame();
+scoreCalculator();
