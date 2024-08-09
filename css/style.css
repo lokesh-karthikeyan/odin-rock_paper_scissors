@@ -62,12 +62,13 @@ html {
 
 .scorecards .scores-individual {
   display: flex;
+  gap: 1em;
 }
 
 .player-score,
 .computer-score {
   text-align: center;
-  margin: 25px 5px;
+  margin: 25px 0;
   border: solid 5px #000000;
   padding-top: 15px;
   border-radius: 15px 15px 5px 5px;
@@ -84,4 +85,71 @@ html {
   border-top: solid 5px #000000;
   font-size: 7em;
   color: #000;
+}
+
+/*------ SECTION - 02 [SIGN SELECTION] ------*/
+
+.container,
+.player-container,
+.computer-container,
+.signs-container {
+  display: flex;
+}
+
+.container {
+  justify-content: center;
+  margin-bottom: 35px;
+  flex-wrap: wrap;
+  gap: 2em;
+}
+
+.player-container,
+.computer-container {
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+  box-shadow: 15px 15px 10px #80c5e5;
+  background-color: #a0d5ef;
+  border-radius: 25px;
+}
+
+.player-logo {
+  border-radius: 25px;
+  box-shadow: 15px 15px 10px #7dc7eb;
+  padding: 25px;
+  background-color: #93d0ef;
+  margin: 25px 0;
+}
+
+.signs-container {
+  padding: 25px;
+  text-align: center;
+  gap: 2em;
+}
+
+.signs {
+  border: solid 5px #000;
+  background-color: #000;
+  border-radius: 15px 15px 5px 5px;
+  min-width: 200px;
+  box-shadow: 10px 10px 10px #494F55;
+}
+
+.signs h4 {
+  margin: 20px;
+  color: #fff;
+}
+
+.signs .choice,
+.signs button,
+.signs button img {
+  background-color: #67bde8;
+}
+
+.signs button {
+  border: none;
+}
+
+.signs button img {
+  padding: 15px;
 }
