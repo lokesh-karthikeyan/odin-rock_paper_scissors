@@ -26,22 +26,20 @@ html {
 
 .header-title {
   display: flex;
-  padding: 25px;
   justify-content: center;
   align-items: center;
   font-family: "Silkscreen", sans-serif;
-  font-size: 1.2em;
+  font-size: 1.5em;
 }
 
 .header-title img {
   margin-left: 50px;
-  height: 70px;
-  width: 70px;
 }
 
 .header-title,
 .footer-content {
   background-color: #eddd34;
+  padding: 25px;
 }
 
 /*------ SECTION - 01 [SCORECARD] ------*/
@@ -53,11 +51,17 @@ html {
   font-size: 1.2em;
   padding: 25px;
   font-family: "Pixelify Sans", sans-serif;
+  max-width: 800px;
+  margin: 120px auto;
+  background-color: #a0d5ef;
+  border-radius: 25px;
+  box-shadow: 15px 15px 10px #80c5e5;
 }
 
 .scorecards h2 {
   text-transform: uppercase;
-  text-shadow: 8px 8px 10px #80c5e5;
+  text-shadow: 8px 8px 10px #808080;
+  font-size: 2.5em;
 }
 
 .scorecards .scores-individual {
@@ -133,6 +137,7 @@ html {
   border-radius: 15px 15px 5px 5px;
   min-width: 200px;
   box-shadow: 10px 10px 10px #494F55;
+  transition: all .5s ease-in-out;
 }
 
 .signs h4 {
@@ -159,7 +164,15 @@ html {
 .footer-content {
   font-size: .7em;
   font-weight: bold;
-  padding: 25px;
   margin-top: 120px;
   text-align: center;
+}
+
+/*------ MISC ------*/
+
+.signs:hover {
+  transform: scale(1.1);
+  border: solid 5px #000;
+  background-color: #eddd34;
+  color: #000;
 }
