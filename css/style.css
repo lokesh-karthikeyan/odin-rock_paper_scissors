@@ -8,6 +8,7 @@ html {
   box-sizing: border-box;
   font-family: "Lato", sans-serif;
   font-size: 24px;
+  background-color: #b0ddf4;
 }
 
 * {
@@ -34,9 +35,53 @@ html {
 
 .header-title img {
   margin-left: 50px;
+  height: 70px;
+  width: 70px;
 }
 
 .header-title,
 .footer-content {
   background-color: #eddd34;
+}
+
+/*------ SECTION - 01 [SCORECARD] ------*/
+
+.scorecards {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: 1.2em;
+  padding: 25px;
+  font-family: "Pixelify Sans", sans-serif;
+}
+
+.scorecards h2 {
+  text-transform: uppercase;
+  text-shadow: 8px 8px 10px #80c5e5;
+}
+
+.scorecards .scores-individual {
+  display: flex;
+}
+
+.player-score,
+.computer-score {
+  text-align: center;
+  margin: 25px 5px;
+  border: solid 5px #000000;
+  padding-top: 15px;
+  border-radius: 15px 15px 5px 5px;
+  background-color: #000;
+  color: #fff;
+  box-shadow: 12px 12px 10px #80c5e5;
+}
+
+.current-score {
+  background-color: #eddd34;
+  min-height: auto;
+  min-width: 300px;
+  margin-top: 15px;
+  border-top: solid 5px #000000;
+  font-size: 7em;
+  color: #000;
 }
