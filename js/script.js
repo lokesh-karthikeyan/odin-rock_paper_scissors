@@ -111,6 +111,8 @@ let optionSigns = [...document.querySelectorAll(".signs-player")];
 for (let option of optionSigns) {
   option.addEventListener("mouseenter", hoverEffectEnable);
   option.addEventListener("mouseleave", hoverEffectDisable);
+  option.addEventListener("mousedown", keypressEffectEnable);
+  option.addEventListener("mouseup", keypressEffectDisable);
 }
 
 function hoverEffectEnable(e) {
@@ -125,6 +127,46 @@ function hoverEffectDisable(e) {
   let title = currentSelection.firstElementChild;
 
   title.style.color = "#fff";
+}
+
+function keypressEffectEnable(e) {
+  let currentSelection = e.target;
+
+  while (!currentSelection.id) {
+    let target = currentSelection.parentNode;
+    currentSelection = target;
+  }
+
+  let button = document.querySelector(`#${currentSelection.id} .choice button`);
+  let icon = document.querySelector(
+    `#${currentSelection.id} .choice button img`,
+  );
+
+  currentSelection.style.backgroundColor = "#000";
+  currentSelection.firstElementChild.style.color = "#fff";
+  currentSelection.lastElementChild.style.backgroundColor = "#eddd34";
+  button.style.backgroundColor = "#eddd34";
+  icon.style.backgroundColor = "#eddd34";
+}
+
+function keypressEffectDisable(e) {
+  let currentSelection = e.target;
+
+  while (!currentSelection.id) {
+    let target = currentSelection.parentNode;
+    currentSelection = target;
+  }
+
+  let button = document.querySelector(`#${currentSelection.id} .choice button`);
+  let icon = document.querySelector(
+    `#${currentSelection.id} .choice button img`,
+  );
+
+  currentSelection.style.backgroundColor = "";
+  currentSelection.firstElementChild.style.color = "#000";
+  currentSelection.lastElementChild.style.backgroundColor = "";
+  button.style.backgroundColor = "";
+  icon.style.backgroundColor = "";
 }
 
 // playGame();
