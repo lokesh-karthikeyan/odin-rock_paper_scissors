@@ -195,5 +195,27 @@ function getHumanChoice(e) {
   setBotChoiceSelection(computerChoice, unsetBotChoiceSelection);
 }
 
+/**********************************************************************************
+ * Function objective: Set the UI visual effects for the computer's selection     *
+ **********************************************************************************/
+
+function setBotChoiceSelection(choice, callbackFunction) {
+  let botChoice = document.getElementById(`computer-${choice}`);
+
+  botChoice.classList.add("bot-choice");
+
+  setTimeout(function () {
+    callbackFunction(botChoice);
+  }, 500);
+}
+
+/*************************************************************************************
+ * Function objective: Revert the UI visual effects for the computer's selection     *
+ *************************************************************************************/
+
+function unsetBotChoiceSelection(tag) {
+  tag.classList.remove("bot-choice");
+}
+
 // playGame();
 // scoreCalculator();
