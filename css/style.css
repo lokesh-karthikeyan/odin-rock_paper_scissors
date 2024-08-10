@@ -42,17 +42,28 @@ html {
   padding: 25px;
 }
 
-/*------ SECTION - 01 [SCORECARD] ------*/
+/*------ MAIN-CONTENT [SCORECARD] ------*/
+
+.main-content,
+.scorecards,
+.scores-individual {
+  display: flex;
+}
+
+.main-content {
+  margin: 120px 0;
+  justify-content: center;
+  gap: 4em;
+  flex-wrap: wrap;
+  align-items: center;
+}
 
 .scorecards {
-  display: flex;
   align-items: center;
   flex-direction: column;
   font-size: 1.2em;
-  padding: 25px;
+  padding: 25px 50px;
   font-family: "Pixelify Sans", sans-serif;
-  max-width: 800px;
-  margin: 120px auto;
   background-color: #a0d5ef;
   border-radius: 25px;
   box-shadow: 15px 15px 10px #7095a7;
@@ -65,7 +76,6 @@ html {
 }
 
 .scorecards .scores-individual {
-  display: flex;
   gap: 1em;
 }
 
@@ -84,11 +94,19 @@ html {
 .current-score {
   background-color: #eddd34;
   min-height: auto;
-  min-width: 300px;
+  min-width: 250px;
   margin-top: 15px;
   border-top: solid 5px #000000;
   font-size: 7em;
   color: #000;
+}
+
+.player-logo {
+  border-radius: 25px;
+  box-shadow: 15px 15px 10px #80aabf;
+  padding: 25px;
+  background-color: #90bfd7;
+  margin: 25px 0;
 }
 
 /*------ SECTION - 02 [SIGN SELECTION] ------*/
@@ -109,20 +127,10 @@ html {
 
 .player-container,
 .computer-container {
-  flex-direction: column;
-  align-items: center;
   padding: 25px;
   box-shadow: 15px 15px 10px #7095a7;
   background-color: #a0d5ef;
   border-radius: 25px;
-}
-
-.player-logo {
-  border-radius: 25px;
-  box-shadow: 15px 15px 10px #80aabf;
-  padding: 25px;
-  background-color: #90bfd7;
-  margin: 25px 0;
 }
 
 .signs-container {
@@ -170,7 +178,7 @@ html {
 
 /*------ MISC ------*/
 
-.signs:hover {
+.signs-player:hover {
   transform: scale(1.1);
   border: solid 5px #000;
   background-color: #eddd34;
