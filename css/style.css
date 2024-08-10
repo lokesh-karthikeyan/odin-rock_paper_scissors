@@ -55,12 +55,12 @@ html {
   margin: 120px auto;
   background-color: #a0d5ef;
   border-radius: 25px;
-  box-shadow: 15px 15px 10px #80c5e5;
+  box-shadow: 15px 15px 10px #7095a7;
 }
 
 .scorecards h2 {
   text-transform: uppercase;
-  text-shadow: 8px 8px 10px #808080;
+  text-shadow: 8px 8px 10px #47420f;
   font-size: 2.5em;
 }
 
@@ -78,7 +78,7 @@ html {
   border-radius: 15px 15px 5px 5px;
   background-color: #000;
   color: #fff;
-  box-shadow: 12px 12px 10px #80c5e5;
+  box-shadow: 12px 12px 10px #47420f;
 }
 
 .current-score {
@@ -112,16 +112,16 @@ html {
   flex-direction: column;
   align-items: center;
   padding: 25px;
-  box-shadow: 15px 15px 10px #80c5e5;
+  box-shadow: 15px 15px 10px #7095a7;
   background-color: #a0d5ef;
   border-radius: 25px;
 }
 
 .player-logo {
   border-radius: 25px;
-  box-shadow: 15px 15px 10px #7dc7eb;
+  box-shadow: 15px 15px 10px #80aabf;
   padding: 25px;
-  background-color: #93d0ef;
+  background-color: #90bfd7;
   margin: 25px 0;
 }
 
@@ -136,7 +136,7 @@ html {
   background-color: #000;
   border-radius: 15px 15px 5px 5px;
   min-width: 200px;
-  box-shadow: 10px 10px 10px #494F55;
+  box-shadow: 10px 10px 10px #202a2f;
   transition: all .5s ease-in-out;
 }
 
@@ -148,7 +148,7 @@ html {
 .signs .choice,
 .signs button,
 .signs button img {
-  background-color: #67bde8;
+  background-color: #5fb8e4;
 }
 
 .signs button {
@@ -175,4 +175,6 @@ html {
   border: solid 5px #000;
   background-color: #eddd34;
   color: #000;
+  border-radius: 0;
+  box-shadow: 0 0 0 3px #202a2f;
 }
