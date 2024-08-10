@@ -145,12 +145,18 @@ html {
   border-radius: 15px 15px 5px 5px;
   min-width: 200px;
   box-shadow: 10px 10px 10px #202a2f;
-  transition: all .5s ease-in-out;
+  transition: all .3s ease-in-out;
 }
 
 .signs h4 {
-  margin: 20px;
+  margin: 15px;
   color: #fff;
+  transition: all .3s ease-in-out;
+  font-size: 28px;
+}
+
+.choice {
+  border-top: solid 7px #000;
 }
 
 .signs .choice,
@@ -185,4 +191,16 @@ html {
   color: #000;
   border-radius: 0;
   box-shadow: 0 0 0 3px #202a2f;
+}
+
+.bot-choice {
+  transform: scale(1.1);
+  box-shadow: 0 0 0 3px #202a2f;
+  border-radius: 0;
+}
+
+.bot-choice .choice,
+.bot-choice .choice button,
+.bot-choice .choice button img {
+  background-color: #eddd34;
 }
