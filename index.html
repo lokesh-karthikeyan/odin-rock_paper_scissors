@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <title>TOP | Rock Paper Scissors</title>
   <link href="css/style.css" rel="stylesheet" type="text/css">
-  <!-- <script src="js/script.js" type="text/javascript"></script> -->
+  <script src="js/script.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -16,37 +16,44 @@
       height="80" width="80">
   </header>
 
-  <section class="scorecards">
-    <h2>Score</h2>
-    <div class="scores-individual">
-      <section class="player-score">
-        <h3>Player</h3>
-        <div class="current-score">0</div>
-      </section>
-      <section class="computer-score">
-        <h3>Computer</h3>
-        <div class="current-score">0</div>
-      </section>
+  <main class="main-content">
+    <div class="competitor">
+      <img src=" images/human.png" alt="An icon of a human" height="220" width="220" class="player-logo">
     </div>
-  </section>
+    <section class="scorecards">
+      <h2>Score</h2>
+      <div class="scores-individual">
+        <section class="player-score">
+          <h3>Player</h3>
+          <div class="current-score">0</div>
+        </section>
+        <section class="computer-score">
+          <h3>Computer</h3>
+          <div class="current-score">0</div>
+        </section>
+      </div>
+    </section>
+    <div class="competitor">
+      <img src="images/robot.png" alt="An icon of a robot" height="220" width="220" class="player-logo">
+    </div>
+  </main>
 
   <div class="container">
     <div class="player-container">
-      <img src=" images/human.png" alt="An icon of a human" height="220" width="220" class="player-logo">
       <div class="signs-container">
-        <section class="signs">
+        <section class="signs signs-player" id="player-rock">
           <h4>Rock</h4>
           <div class="choice">
             <button><img src="images/rock.png" alt="An image of a rock" height="150" width="150"></button>
           </div>
         </section>
-        <section class="signs">
+        <section class="signs signs-player" id="player-paper">
           <h4>Paper</h4>
           <div class="choice">
             <button><img src="images/paper.png" alt="An image of a paper" height="150" width="150"></button>
           </div>
         </section>
-        <section class="signs">
+        <section class="signs signs-player" id="player-scissors">
           <h4>Scissors</h4>
           <div class="choice">
             <button><img src="images/scissors.png" alt="An image of a scissors" height="150" width="150"></button>
@@ -55,21 +62,20 @@
       </div>
     </div>
     <div class="computer-container">
-      <img src="images/robot.png" alt="An icon of a robot" height="220" width="220" class="player-logo">
       <div class="signs-container">
-        <section class="signs">
+        <section class="signs signs-bot" id="computer-rock">
           <h4>Rock</h4>
           <div class="choice">
             <button><img src="images/rock.png" alt="An image of a rock" height="150" width="150"></button>
           </div>
         </section>
-        <section class="signs">
+        <section class="signs signs-bot" id="computer-paper">
           <h4>Paper</h4>
           <div class="choice">
             <button><img src="images/paper.png" alt="An image of a paper" height="150" width="150"></button>
           </div>
         </section>
-        <section class="signs">
+        <section class="signs signs-bot" id="computer-scissors">
           <h4>Scissors</h4>
           <div class="choice">
             <button><img src="images/scissors.png" alt="An image of a scissors" height="150" width="150"></button>
