@@ -1,5 +1,7 @@
 let humanScore = 0;
 let computerScore = 0;
+let playerChoice;
+let computerChoice;
 
 /**********************************************************
  * Function objective: It's to return random values.      *
@@ -21,24 +23,24 @@ function getComputerChoice() {
  * Function objective: To get user's input values.     *
  *******************************************************/
 
-function getHumanChoice() {
-  let userChoice = prompt("Enter your choice from 'Rock' 'Paper' 'Scissors': ");
-  userChoice = userChoice.toLowerCase();
-
-  // Function calls recursively if the input in "falsy" or 'incorrect' values.
-  if (userChoice === "" || null || undefined) {
-    alert("Please enter the valid choice");
-    userChoice = getHumanChoice();
-  } else if (
-    userChoice !== "rock" &&
-    userChoice !== "paper" &&
-    userChoice !== "scissors"
-  ) {
-    alert("Please enter the valid choice");
-    userChoice = getHumanChoice();
-  }
-  return userChoice;
-}
+// function getHumanChoice() {
+//   let userChoice = prompt("Enter your choice from 'Rock' 'Paper' 'Scissors': ");
+//   userChoice = userChoice.toLowerCase();
+//
+//   // Function calls recursively if the input in "falsy" or 'incorrect' values.
+//   if (userChoice === "" || null || undefined) {
+//     alert("Please enter the valid choice");
+//     userChoice = getHumanChoice();
+//   } else if (
+//     userChoice !== "rock" &&
+//     userChoice !== "paper" &&
+//     userChoice !== "scissors"
+//   ) {
+//     alert("Please enter the valid choice");
+//     userChoice = getHumanChoice();
+//   }
+//   return userChoice;
+// }
 
 /*****************************************************************
  * Function objective: To compare user's & computer's input.     *
@@ -109,27 +111,28 @@ function scoreCalculator() {
 let optionSigns = [...document.querySelectorAll(".signs-player")];
 
 for (let option of optionSigns) {
-  option.addEventListener("mouseenter", hoverEffectEnable);
-  option.addEventListener("mouseleave", hoverEffectDisable);
-  option.addEventListener("mousedown", keypressEffectEnable);
-  option.addEventListener("mouseup", keypressEffectDisable);
+  option.addEventListener("mouseenter", setHoverEffect);
+  option.addEventListener("mouseleave", unsetHoverEffect);
+  option.addEventListener("mousedown", setMousepressEffect);
+  option.addEventListener("mouseup", unsetMousepressEffect);
+  option.addEventListener("click", getHumanChoice);
 }
 
-function hoverEffectEnable(e) {
+function setHoverEffect(e) {
   let currentSelection = e.target;
   let title = currentSelection.firstElementChild;
 
   title.style.color = "#000";
 }
 
-function hoverEffectDisable(e) {
+function unsetHoverEffect(e) {
   let currentSelection = e.target;
   let title = currentSelection.firstElementChild;
 
   title.style.color = "#fff";
 }
 
-function keypressEffectEnable(e) {
+function setMousepressEffect(e) {
   let currentSelection = e.target;
 
   while (!currentSelection.id) {
@@ -149,7 +152,7 @@ function keypressEffectEnable(e) {
   icon.style.backgroundColor = "#eddd34";
 }
 
-function keypressEffectDisable(e) {
+function unsetMousepressEffect(e) {
   let currentSelection = e.target;
 
   while (!currentSelection.id) {
@@ -167,6 +170,29 @@ function keypressEffectDisable(e) {
   currentSelection.lastElementChild.style.backgroundColor = "";
   button.style.backgroundColor = "";
   icon.style.backgroundColor = "";
+}
+
+function getHumanChoice(e) {
+  let currentSelection = e.target;
+
+  while (!currentSelection.id) {
+    let target = currentSelection.parentNode;
+    currentSelection = target;
+  }
+
+  switch (currentSelection.id) {
+    case "player-rock":
+      playerChoice = "rock";
+      break;
+    case "player-paper":
+      playerChoice = "paper";
+      break;
+    case "player-scissors":
+      playerChoice = "scissors";
+      break;
+  }
+  computerChoice = getComputerChoice();
+  setBotChoiceSelection(computerChoice, unsetBotChoiceSelection);
 }
 
 // playGame();
