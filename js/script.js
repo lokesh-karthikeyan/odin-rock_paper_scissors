@@ -78,13 +78,13 @@ function playRound(computerChoice, humanChoice) {
  * Function objective: It's a helper function to call "input comparison" function  *
  ***********************************************************************************/
 
-function playGame() {
-  playRound(getComputerChoice(), getHumanChoice());
-  playRound(getComputerChoice(), getHumanChoice());
-  playRound(getComputerChoice(), getHumanChoice());
-  playRound(getComputerChoice(), getHumanChoice());
-  playRound(getComputerChoice(), getHumanChoice());
-}
+// function playGame() {
+//   playRound(getComputerChoice(), getHumanChoice());
+//   playRound(getComputerChoice(), getHumanChoice());
+//   playRound(getComputerChoice(), getHumanChoice());
+//   playRound(getComputerChoice(), getHumanChoice());
+//   playRound(getComputerChoice(), getHumanChoice());
+// }
 
 /******************************************************************
  * Function objective: It's to calculate the player's scores.     *
@@ -106,5 +106,26 @@ function scoreCalculator() {
   }
 }
 
-playGame();
-scoreCalculator();
+let optionSigns = [...document.querySelectorAll(".signs-player")];
+
+for (let option of optionSigns) {
+  option.addEventListener("mouseenter", hoverEffectEnable);
+  option.addEventListener("mouseleave", hoverEffectDisable);
+}
+
+function hoverEffectEnable(e) {
+  let currentSelection = e.target;
+  let title = currentSelection.firstElementChild;
+
+  title.style.color = "#000";
+}
+
+function hoverEffectDisable(e) {
+  let currentSelection = e.target;
+  let title = currentSelection.firstElementChild;
+
+  title.style.color = "#fff";
+}
+
+// playGame();
+// scoreCalculator();
