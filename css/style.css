@@ -83,7 +83,7 @@ html {
 .computer-score {
   text-align: center;
   margin: 25px 0;
-  border: solid 5px #000000;
+  border: solid 8px #000000;
   padding-top: 15px;
   border-radius: 15px 15px 5px 5px;
   background-color: #000;
@@ -101,7 +101,8 @@ html {
   color: #000;
 }
 
-.player-logo {
+.player-logo,
+.computer-logo {
   border-radius: 25px;
   box-shadow: 15px 15px 10px #80aabf;
   padding: 25px;
@@ -120,7 +121,6 @@ html {
 
 .container {
   justify-content: center;
-  margin-bottom: 35px;
   flex-wrap: wrap;
   gap: 2em;
 }
@@ -182,7 +182,9 @@ html {
   text-align: center;
 }
 
-/*------ MISC ------*/
+/*------ RULES FOR DYNAMIC CONTENT ------*/
+
+/**------ APPLIED FOR THE COMPUTER'S CHOICE ------**/
 
 .bot-choice {
   transform: scale(1.1);
@@ -194,4 +196,35 @@ html {
 .bot-choice .choice button,
 .bot-choice .choice button img {
   background-color: #eddd34;
+}
+
+/**------ APPLIED WHEN DECLARING THE RESULT ------**/
+
+.final-result {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  gap: 1em;
+  transition: all .7s ease-in-out;
+  font-size: 2.5em;
+  font-family: "Silkscreen", sans-serif;
+  text-shadow: 8px 8px 10px #47420f;
+}
+
+.retry {
+  font-family: "Silkscreen", sans-serif;
+  font-size: .6em;
+  font-weight: bolder;
+  border: double 25px #000;
+  background-color: #eddd34;
+  padding: 20px 55px;
+  box-shadow: 15px 15px 10px #47420f;
+}
+
+.retry:hover {
+  background-color: #000;
+  border: double 25px #eddd34;
+  color: #fff;
 }
