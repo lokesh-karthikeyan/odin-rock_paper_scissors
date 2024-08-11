@@ -77,7 +77,6 @@ function getComputerChoice() {
 // }
 
 function compareCurrentRoundResult() {
-  // if (computerScore !== 5 && humanScore !== 5) {
   let player = document.querySelector(".player-logo");
   let opponent = document.querySelector(".computer-logo");
 
@@ -85,7 +84,6 @@ function compareCurrentRoundResult() {
     setTieUiEffect(player, opponent);
   }
   compareChoices(player, opponent);
-  // }
 }
 
 function compareChoices(player, opponent) {
@@ -406,6 +404,7 @@ function playAgain() {
   let body = document.querySelector("body");
   let childElements = body.children;
 
+  resetScorePoints();
   for (let childElem of childElements) {
     childElem.style.display = "";
   }
@@ -414,4 +413,15 @@ function playAgain() {
 
   removeElem.remove();
   document.documentElement.style = "";
+}
+
+function resetScorePoints() {
+  let scorePoints = [...document.querySelectorAll(".current-score p")];
+
+  for (let score of scorePoints) {
+    score.textContent = "0";
+  }
+
+  humanScore = 0;
+  computerScore = 0;
 }
