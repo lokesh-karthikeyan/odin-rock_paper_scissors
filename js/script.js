@@ -77,15 +77,15 @@ function getComputerChoice() {
 // }
 
 function compareCurrentRoundResult() {
-  if (computerScore !== 5 && humanScore !== 5) {
-    let player = document.querySelector(".player-logo");
-    let opponent = document.querySelector(".computer-logo");
+  // if (computerScore !== 5 && humanScore !== 5) {
+  let player = document.querySelector(".player-logo");
+  let opponent = document.querySelector(".computer-logo");
 
-    if (playerChoice === computerChoice) {
-      setTieUiEffect(player, opponent);
-    }
-    compareChoices(player, opponent);
+  if (playerChoice === computerChoice) {
+    setTieUiEffect(player, opponent);
   }
+  compareChoices(player, opponent);
+  // }
 }
 
 function compareChoices(player, opponent) {
@@ -344,13 +344,16 @@ function setScore(scoreValue, targetElem) {
   targetElem.style.cssText =
     "transform: rotate(360deg); transition: all .5s ease-in-out";
   targetElem.textContent = scoreValue;
-  console.log(targetElem.id);
 
   setTimeout(function () {
     targetElem.style = "";
   }, 1200);
 
-  if (scoreValue === 5) playEnd(targetElem.id);
+  if (scoreValue === 1) {
+    setTimeout(function () {
+      playEnd(targetElem.id);
+    }, 1200);
+  }
 }
 
 function playEnd(targetId) {
@@ -388,8 +391,27 @@ function playEnd(targetId) {
   result.appendChild(retryButton);
 
   body.appendChild(result);
+  body.parentElement.style.transition = "all .7s ease-in-out";
   body.parentElement.style.backgroundColor = color;
+  setTimeout(function () {
+    result.style.transform = "rotate(360deg)";
+  }, 100);
+
+  let button = document.querySelector(".retry");
+
+  button.addEventListener("click", playAgain);
 }
 
-// playGame();
-// scoreCalculator();
+function playAgain() {
+  let body = document.querySelector("body");
+  let childElements = body.children;
+
+  for (let childElem of childElements) {
+    childElem.style.display = "";
+  }
+
+  let removeElem = document.querySelector(".final-result");
+
+  removeElem.remove();
+  document.documentElement.style = "";
+}
