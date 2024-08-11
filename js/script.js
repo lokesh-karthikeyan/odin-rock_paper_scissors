@@ -46,33 +46,96 @@ function getComputerChoice() {
  * Function objective: To compare user's & computer's input.     *
  *****************************************************************/
 
-function playRound(computerChoice, humanChoice) {
-  if (computerChoice === humanChoice) {
-    console.log("Oops! It's a tie");
-  } else if (computerChoice === "rock") {
-    if (humanChoice === "scissors") {
-      ++computerScore;
-      console.log("You lose! Rock beats Scissors");
-    } else if (humanChoice === "paper") {
-      ++humanScore;
-      console.log("You Win!! Paper beats Rock");
+// function playRound(computerChoice, humanChoice) {
+//   if (computerChoice === humanChoice) {
+//     console.log("Oops! It's a tie");
+//   } else if (computerChoice === "rock") {
+//     if (humanChoice === "scissors") {
+//       ++computerScore;
+//       console.log("You lose! Rock beats Scissors");
+//     } else if (humanChoice === "paper") {
+//       ++humanScore;
+//       console.log("You Win!! Paper beats Rock");
+//     }
+//   } else if (computerChoice === "paper") {
+//     if (humanChoice === "rock") {
+//       ++computerScore;
+//       console.log("You lose! Paper beats Rock");
+//     } else if (humanChoice === "scissors") {
+//       ++humanScore;
+//       console.log("You Win!! Scissors beats Paper");
+//     }
+//   } else if (computerChoice === "scissors") {
+//     if (humanChoice === "paper") {
+//       ++computerScore;
+//       console.log("You lose! Paper beats Rock");
+//     } else if (humanChoice === "rock") {
+//       ++humanScore;
+//       console.log("You Win!! Rock beats Scissors");
+//     }
+//   }
+// }
+
+function compareCurrentRoundResult() {
+  if (computerScore !== 5 && humanScore !== 5) {
+    let player = document.querySelector(".player-logo");
+    let opponent = document.querySelector(".computer-logo");
+
+    if (playerChoice === computerChoice) {
+      setTieUiEffect(player, opponent);
     }
-  } else if (computerChoice === "paper") {
-    if (humanChoice === "rock") {
-      ++computerScore;
-      console.log("You lose! Paper beats Rock");
-    } else if (humanChoice === "scissors") {
-      ++humanScore;
-      console.log("You Win!! Scissors beats Paper");
-    }
-  } else if (computerChoice === "scissors") {
-    if (humanChoice === "paper") {
-      ++computerScore;
-      console.log("You lose! Paper beats Rock");
-    } else if (humanChoice === "rock") {
-      ++humanScore;
-      console.log("You Win!! Rock beats Scissors");
-    }
+    console.log(playerChoice, computerChoice);
+    compareChoices(player, opponent);
+  }
+}
+
+function compareChoices(player, opponent) {
+  // let player = document.querySelector(".player-logo");
+  // let opponent = document.querySelector(".computer-logo");
+  let playerBox = document.querySelector(".player-container");
+  let computerBox = document.querySelector(".computer-container");
+
+  console.log(player, opponent);
+  console.log(playerChoice, computerChoice);
+  switch (playerChoice) {
+    case "rock":
+      if (computerChoice === "paper") {
+        ++computerScore;
+        setWinnerUiEffect(opponent, computerBox);
+        setLoserUiEffect(player, playerBox);
+      }
+      if (computerChoice === "scissors") {
+        ++humanScore;
+        setWinnerUiEffect(player, playerBox);
+        setLoserUiEffect(opponent, computerBox);
+      }
+      break;
+
+    case "paper":
+      if (computerChoice === "rock") {
+        ++humanScore;
+        setWinnerUiEffect(player, playerBox);
+        setLoserUiEffect(opponent, computerBox);
+      }
+      if (computerChoice === "scissors") {
+        ++computerScore;
+        setWinnerUiEffect(opponent, computerBox);
+        setLoserUiEffect(player, playerBox);
+      }
+      break;
+
+    case "scissors":
+      if (computerChoice === "rock") {
+        ++computerScore;
+        setWinnerUiEffect(opponent, computerBox);
+        setLoserUiEffect(player, playerBox);
+      }
+      if (computerChoice === "paper") {
+        ++humanScore;
+        setWinnerUiEffect(player, playerBox);
+        setLoserUiEffect(opponent, computerBox);
+      }
+      console.log(humanScore, computerScore);
   }
 }
 
@@ -109,7 +172,6 @@ function scoreCalculator() {
 }
 
 let playerOptions = [...document.querySelectorAll(".signs-player")];
-// let computerOptions = [...document.querySelectorAll(".signs-bot")];
 
 for (let option of playerOptions) {
   option.addEventListener("mouseenter", setHoverEffect);
@@ -119,10 +181,6 @@ for (let option of playerOptions) {
   option.addEventListener("click", getHumanChoice);
   option.addEventListener("click", compareCurrentRoundResult);
 }
-
-// for (let option of computerOptions) {
-//   option.addEventListener("transitionend", compareCurrentRoundResult);
-// }
 
 function setHoverEffect(e) {
   let currentSelection = e.target;
@@ -217,7 +275,7 @@ function setBotChoiceSelection(choice, callbackFunction) {
 
   setTimeout(function () {
     callbackFunction(botChoice);
-  }, 500);
+  }, 1200);
 }
 
 /*************************************************************************************
@@ -228,33 +286,50 @@ function unsetBotChoiceSelection(tag) {
   tag.classList.remove("bot-choice");
 }
 
-function setWinnerUiEffect(icon) {
+function setWinnerUiEffect(icon, optionContainer) {
   icon.style.cssText =
+    "background-color: #99D987; box-shadow: 15px 15px 10px #abf296";
+  optionContainer.style.cssText =
     "background-color: #99D987; box-shadow: 15px 15px 10px #abf296";
   setTimeout(function () {
     icon.style = "";
-  }, 600);
+    optionContainer.style = "";
+  }, 1200);
 }
 
-function setLoserUiEffect(icon) {
+function setLoserUiEffect(icon, optionContainer) {
   icon.style.cssText =
+    "background-color: #D0857D; box-shadow: 15px 15px 10px #e8948b";
+  optionContainer.style.cssText =
     "background-color: #D0857D; box-shadow: 15px 15px 10px #e8948b";
   setTimeout(function () {
     icon.style = "";
-  }, 600);
+    optionContainer.style = "";
+  }, 1200);
 }
 
-function setTieUiEffect(icon) {
-  icon.style.cssText =
-    "background-color: #f7f8f4; box-shadow: 15px 15px 10px #ffffff";
-  setTimeout(function () {
-    icon.style = "";
-  }, 600);
-}
+function setTieUiEffect(iconPlayer, iconBot) {
+  let icons = [iconPlayer, iconBot];
+  let optionContainers = [
+    document.querySelector(".player-container"),
+    document.querySelector(".computer-container"),
+  ];
 
-function compareCurrentRoundResult(e) {
-  let icon = document.querySelector(".computer-logo");
-  setTimeout(() => setTieUiEffect(icon), 1000);
+  for (let icon of icons) {
+    icon.style.cssText =
+      "background-color: #f7f8f4; box-shadow: 15px 15px 10px #ffffff";
+    setTimeout(function () {
+      icon.style = "";
+    }, 1200);
+  }
+
+  for (let optionContainer of optionContainers) {
+    optionContainer.style.cssText =
+      "background-color: #f7f8f4; box-shadow: 15px 15px 10px #ffffff";
+    setTimeout(function () {
+      optionContainer.style = "";
+    }, 1200);
+  }
 }
 
 // playGame();
