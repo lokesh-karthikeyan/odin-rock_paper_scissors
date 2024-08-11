@@ -10,6 +10,8 @@
 </head>
 
 <body>
+  <!-- *** Header content of the page *** -->
+
   <header class="header-title">
     <h1>Rock Paper Scissors</h1>
     <img src="images/rock-paper-scissors.png" alt="A logo of hand signs that shows 'Rock', 'Paper' and 'Scissors'."
@@ -17,30 +19,42 @@
   </header>
 
   <main class="main-content">
-    <div class="competitor">
+    <div>
       <img src=" images/human.png" alt="An icon of a human" height="220" width="220" class="player-logo">
     </div>
+    <!-- *** The container that displays and keep tracks of the scores *** -->
+
     <section class="scorecards">
       <h2>Score</h2>
       <div class="scores-individual">
+        <!-- *** Container of the player's scoreboard *** -->
+
         <section class="player-score">
           <h3>Player</h3>
-          <div class="current-score">0</div>
+          <div class="current-score">
+            <p id="player-point">0</p>
+          </div>
         </section>
+        <!-- *** Container of the computer's scoreboard *** -->
+
         <section class="computer-score">
           <h3>Computer</h3>
-          <div class="current-score">0</div>
+          <div class="current-score">
+            <p id="computer-point">0</p>
+          </div>
         </section>
       </div>
     </section>
-    <div class="competitor">
-      <img src="images/robot.png" alt="An icon of a robot" height="220" width="220" class="player-logo">
+    <div>
+      <img src="images/robot.png" alt="An icon of a robot" height="220" width="220" class="computer-logo">
     </div>
   </main>
 
   <div class="container">
     <div class="player-container">
       <div class="signs-container">
+        <!-- *** Contains the options where the player can hover and select *** -->
+
         <section class="signs signs-player" id="player-rock">
           <h4>Rock</h4>
           <div class="choice">
@@ -63,6 +77,8 @@
     </div>
     <div class="computer-container">
       <div class="signs-container">
+        <!-- *** Contains the options where the "javascript" code selects the option by random *** -->
+
         <section class="signs" id="computer-rock">
           <h4>Rock</h4>
           <div class="choice">
@@ -85,6 +101,7 @@
     </div>
   </div>
 
+  <!-- *** Footer content of the page *** -->
   <footer class="footer-content">
     <p>Copyright © The Odin Project 2024</p>
   </footer>
