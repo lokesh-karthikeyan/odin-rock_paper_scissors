@@ -94,18 +94,24 @@ function compareChoices(player, opponent) {
   // let opponent = document.querySelector(".computer-logo");
   let playerBox = document.querySelector(".player-container");
   let computerBox = document.querySelector(".computer-container");
+  let playerScoreCard = document.querySelector(
+    ".player-score .current-score p",
+  );
+  let computerScoreCard = document.querySelector(
+    ".computer-score .current-score p",
+  );
 
-  console.log(player, opponent);
-  console.log(playerChoice, computerChoice);
   switch (playerChoice) {
     case "rock":
       if (computerChoice === "paper") {
         ++computerScore;
+        setScore(computerScore, computerScoreCard);
         setWinnerUiEffect(opponent, computerBox);
         setLoserUiEffect(player, playerBox);
       }
       if (computerChoice === "scissors") {
         ++humanScore;
+        setScore(humanScore, playerScoreCard);
         setWinnerUiEffect(player, playerBox);
         setLoserUiEffect(opponent, computerBox);
       }
@@ -114,11 +120,13 @@ function compareChoices(player, opponent) {
     case "paper":
       if (computerChoice === "rock") {
         ++humanScore;
+        setScore(humanScore, playerScoreCard);
         setWinnerUiEffect(player, playerBox);
         setLoserUiEffect(opponent, computerBox);
       }
       if (computerChoice === "scissors") {
         ++computerScore;
+        setScore(computerScore, computerScoreCard);
         setWinnerUiEffect(opponent, computerBox);
         setLoserUiEffect(player, playerBox);
       }
@@ -127,11 +135,13 @@ function compareChoices(player, opponent) {
     case "scissors":
       if (computerChoice === "rock") {
         ++computerScore;
+        setScore(computerScore, computerScoreCard);
         setWinnerUiEffect(opponent, computerBox);
         setLoserUiEffect(player, playerBox);
       }
       if (computerChoice === "paper") {
         ++humanScore;
+        setScore(humanScore, playerScoreCard);
         setWinnerUiEffect(player, playerBox);
         setLoserUiEffect(opponent, computerBox);
       }
@@ -238,7 +248,7 @@ function unsetMousepressEffect(e) {
     currentSelection.lastElementChild.style.backgroundColor = "";
     button.style.backgroundColor = "";
     icon.style.backgroundColor = "";
-  }, 500);
+  }, 1200);
 }
 
 function getHumanChoice(e) {
@@ -330,6 +340,10 @@ function setTieUiEffect(iconPlayer, iconBot) {
       optionContainer.style = "";
     }, 1200);
   }
+}
+
+function setScore(scoreValue, targetElem) {
+  targetElem.textContent = scoreValue;
 }
 
 // playGame();
