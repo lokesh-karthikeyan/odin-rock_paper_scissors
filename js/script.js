@@ -108,22 +108,28 @@ function scoreCalculator() {
   }
 }
 
-let optionSigns = [...document.querySelectorAll(".signs-player")];
+let playerOptions = [...document.querySelectorAll(".signs-player")];
+// let computerOptions = [...document.querySelectorAll(".signs-bot")];
 
-for (let option of optionSigns) {
+for (let option of playerOptions) {
   option.addEventListener("mouseenter", setHoverEffect);
   option.addEventListener("mouseleave", unsetHoverEffect);
   option.addEventListener("mousedown", setMousepressEffect);
   option.addEventListener("mouseup", unsetMousepressEffect);
   option.addEventListener("click", getHumanChoice);
+  option.addEventListener("click", compareCurrentRoundResult);
 }
+
+// for (let option of computerOptions) {
+//   option.addEventListener("transitionend", compareCurrentRoundResult);
+// }
 
 function setHoverEffect(e) {
   let currentSelection = e.target;
   let title = currentSelection.firstElementChild;
 
   currentSelection.style.cssText =
-    "transform: scale(1.1); border: solid 5px #000; background-color: #eddd34; color: #000; border-radius: 0; box-shadow: 0 0 0 3px #202a2f;";
+    "transform: scale(1.1); border: solid 5px #000; background-color: #eddd34; border-radius: 0; box-shadow: 0 0 0 3px #202a2f;";
   title.style.color = "#000";
 }
 
@@ -220,6 +226,35 @@ function setBotChoiceSelection(choice, callbackFunction) {
 
 function unsetBotChoiceSelection(tag) {
   tag.classList.remove("bot-choice");
+}
+
+function setWinnerUiEffect(icon) {
+  icon.style.cssText =
+    "background-color: #99D987; box-shadow: 15px 15px 10px #abf296";
+  setTimeout(function () {
+    icon.style = "";
+  }, 600);
+}
+
+function setLoserUiEffect(icon) {
+  icon.style.cssText =
+    "background-color: #D0857D; box-shadow: 15px 15px 10px #e8948b";
+  setTimeout(function () {
+    icon.style = "";
+  }, 600);
+}
+
+function setTieUiEffect(icon) {
+  icon.style.cssText =
+    "background-color: #f7f8f4; box-shadow: 15px 15px 10px #ffffff";
+  setTimeout(function () {
+    icon.style = "";
+  }, 600);
+}
+
+function compareCurrentRoundResult(e) {
+  let icon = document.querySelector(".computer-logo");
+  setTimeout(() => setTieUiEffect(icon), 1000);
 }
 
 // playGame();
