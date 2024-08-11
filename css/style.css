@@ -184,15 +184,6 @@ html {
 
 /*------ MISC ------*/
 
-.signs-player:hover {
-  transform: scale(1.1);
-  border: solid 5px #000;
-  background-color: #eddd34;
-  color: #000;
-  border-radius: 0;
-  box-shadow: 0 0 0 3px #202a2f;
-}
-
 .bot-choice {
   transform: scale(1.1);
   box-shadow: 0 0 0 3px #202a2f;
