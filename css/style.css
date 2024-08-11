@@ -2,7 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&display=swap');
 
-/*------ GENERAL ------*/
+/*------ GLOBAL RULES ------*/
 
 html {
   box-sizing: border-box;
@@ -222,6 +222,8 @@ html {
   padding: 20px 55px;
   box-shadow: 15px 15px 10px #47420f;
 }
+
+/**------ HOVER EFFECTS ------**/
 
 .retry:hover {
   background-color: #000;
