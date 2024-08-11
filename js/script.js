@@ -84,7 +84,6 @@ function compareCurrentRoundResult() {
     if (playerChoice === computerChoice) {
       setTieUiEffect(player, opponent);
     }
-    console.log(playerChoice, computerChoice);
     compareChoices(player, opponent);
   }
 }
@@ -145,7 +144,6 @@ function compareChoices(player, opponent) {
         setWinnerUiEffect(player, playerBox);
         setLoserUiEffect(opponent, computerBox);
       }
-      console.log(humanScore, computerScore);
   }
 }
 
@@ -343,7 +341,54 @@ function setTieUiEffect(iconPlayer, iconBot) {
 }
 
 function setScore(scoreValue, targetElem) {
+  targetElem.style.cssText =
+    "transform: rotate(360deg); transition: all .5s ease-in-out";
   targetElem.textContent = scoreValue;
+  console.log(targetElem.id);
+
+  setTimeout(function () {
+    targetElem.style = "";
+  }, 1200);
+
+  if (scoreValue === 5) playEnd(targetElem.id);
+}
+
+function playEnd(targetId) {
+  let body = document.querySelector("body");
+  let childElements = body.children;
+  let target = targetId;
+
+  for (let childElem of childElements) {
+    childElem.style.display = "none";
+  }
+
+  let result = document.createElement("section");
+  let resultHeader = document.createElement("h1");
+  let retryButton = document.createElement("button");
+  let resultText;
+  let buttonText = document.createTextNode("RETRY ↻");
+  let color;
+
+  result.classList.add("final-result");
+  retryButton.classList.add("retry");
+
+  if (target.includes("player")) {
+    resultText = document.createTextNode("You Win!");
+    color = "#99D987";
+  }
+
+  if (target.includes("computer")) {
+    resultText = document.createTextNode("You Lose!");
+    color = "#D0857D";
+  }
+
+  resultHeader.appendChild(resultText);
+  retryButton.appendChild(buttonText);
+  result.appendChild(resultHeader);
+  result.appendChild(retryButton);
+
+  body.appendChild(result);
+  body.parentElement.style.backgroundColor = color;
 }
 
 // playGame();
