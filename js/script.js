@@ -3,9 +3,9 @@ let computerScore = 0;
 let playerChoice;
 let computerChoice;
 
-/**********************************************************
- * Function objective: It's to return random values.      *
- **********************************************************/
+/***************************************************************
+ * Function objective: Generate and return random values.      *
+ ***************************************************************/
 
 function getComputerChoice() {
   let randomNumber = Math.floor(Math.random() * 3) + 1;
@@ -19,76 +19,183 @@ function getComputerChoice() {
   }
 }
 
-/*******************************************************
- * Function objective: To get user's input values.     *
- *******************************************************/
+/********************************************************************************************************
+ * Event Listeners objective: Set UI visual effects for "hover" and triggering actions for "click".     *
+ ********************************************************************************************************/
 
-// function getHumanChoice() {
-//   let userChoice = prompt("Enter your choice from 'Rock' 'Paper' 'Scissors': ");
-//   userChoice = userChoice.toLowerCase();
-//
-//   // Function calls recursively if the input in "falsy" or 'incorrect' values.
-//   if (userChoice === "" || null || undefined) {
-//     alert("Please enter the valid choice");
-//     userChoice = getHumanChoice();
-//   } else if (
-//     userChoice !== "rock" &&
-//     userChoice !== "paper" &&
-//     userChoice !== "scissors"
-//   ) {
-//     alert("Please enter the valid choice");
-//     userChoice = getHumanChoice();
-//   }
-//   return userChoice;
-// }
+let playerOptions = [...document.querySelectorAll(".signs-player")];
 
-/*****************************************************************
- * Function objective: To compare user's & computer's input.     *
- *****************************************************************/
+for (let option of playerOptions) {
+  option.addEventListener("mouseenter", setHoverEffect);
+  option.addEventListener("mouseleave", unsetHoverEffect);
+  option.addEventListener("mousedown", setMousepressEffect);
+  option.addEventListener("mouseup", unsetMousepressEffect);
+  option.addEventListener("click", getHumanChoice);
+  option.addEventListener("click", compareCurrentRoundResult);
+}
 
-// function playRound(computerChoice, humanChoice) {
-//   if (computerChoice === humanChoice) {
-//     console.log("Oops! It's a tie");
-//   } else if (computerChoice === "rock") {
-//     if (humanChoice === "scissors") {
-//       ++computerScore;
-//       console.log("You lose! Rock beats Scissors");
-//     } else if (humanChoice === "paper") {
-//       ++humanScore;
-//       console.log("You Win!! Paper beats Rock");
-//     }
-//   } else if (computerChoice === "paper") {
-//     if (humanChoice === "rock") {
-//       ++computerScore;
-//       console.log("You lose! Paper beats Rock");
-//     } else if (humanChoice === "scissors") {
-//       ++humanScore;
-//       console.log("You Win!! Scissors beats Paper");
-//     }
-//   } else if (computerChoice === "scissors") {
-//     if (humanChoice === "paper") {
-//       ++computerScore;
-//       console.log("You lose! Paper beats Rock");
-//     } else if (humanChoice === "rock") {
-//       ++humanScore;
-//       console.log("You Win!! Rock beats Scissors");
-//     }
-//   }
-// }
+/*******************************************************************************************
+ * Function objective: Produce an hover effect whenever the pointer enters the target.     *
+ *******************************************************************************************/
+
+function setHoverEffect(e) {
+  let currentSelection = e.target;
+  let title = currentSelection.firstElementChild;
+
+  currentSelection.style.cssText =
+    "transform: scale(1.1); border: solid 5px #000; background-color: #eddd34; border-radius: 0; box-shadow: 0 0 0 3px #202a2f;";
+  title.style.color = "#000";
+}
+
+/*************************************************************************************************
+ * Function objective: Release the hover effect whenever the pointer leaves from the target.     *
+ *************************************************************************************************/
+
+function unsetHoverEffect(e) {
+  let currentSelection = e.target;
+  let title = currentSelection.firstElementChild;
+
+  currentSelection.style = "";
+  title.style.color = "#fff";
+}
+
+/**************************************************************************************************
+ * Function objective: The background color and color will be changed whenever the mouse          *
+ * button is pressed on the target.                                                               *
+ **************************************************************************************************/
+
+function setMousepressEffect(e) {
+  let currentSelection = e.target;
+
+  while (!currentSelection.id) {
+    let target = currentSelection.parentNode;
+    currentSelection = target;
+  }
+
+  let button = document.querySelector(`#${currentSelection.id} .choice button`);
+  let icon = document.querySelector(
+    `#${currentSelection.id} .choice button img`,
+  );
+
+  currentSelection.style.backgroundColor = "#000";
+  currentSelection.firstElementChild.style.color = "#fff";
+  currentSelection.lastElementChild.style.backgroundColor = "#eddd34";
+  button.style.backgroundColor = "#eddd34";
+  icon.style.backgroundColor = "#eddd34";
+}
+
+/**********************************************************************************************
+ * Function objective: The background color and color will be reverted back like before       *
+ * the "mousedown" event. It triggers on mouse button's release from the target.              *
+ **********************************************************************************************/
+
+function unsetMousepressEffect(e) {
+  let currentSelection = e.target;
+
+  while (!currentSelection.id) {
+    let target = currentSelection.parentNode;
+    currentSelection = target;
+  }
+
+  let button = document.querySelector(`#${currentSelection.id} .choice button`);
+  let icon = document.querySelector(
+    `#${currentSelection.id} .choice button img`,
+  );
+
+  // *** Following style rules will take effect post 1200ms ***
+  setTimeout(() => {
+    currentSelection.style.backgroundColor = "";
+    currentSelection.firstElementChild.style.color = "";
+    currentSelection.lastElementChild.style.backgroundColor = "";
+    button.style.backgroundColor = "";
+    icon.style.backgroundColor = "";
+  }, 1200);
+}
+
+/*************************************************************************************
+ * Function objective: Generated by the player's selection from the UI               *
+ * due to "click" event and assign the player's choice to the "playerChoice"         *
+ * global variable.                                                                  *
+ *************************************************************************************/
+
+function getHumanChoice(e) {
+  let currentSelection = e.target;
+
+  while (!currentSelection.id) {
+    let target = currentSelection.parentNode;
+    currentSelection = target;
+  }
+
+  switch (currentSelection.id) {
+    case "player-rock":
+      playerChoice = "rock";
+      break;
+    case "player-paper":
+      playerChoice = "paper";
+      break;
+    case "player-scissors":
+      playerChoice = "scissors";
+      break;
+  }
+
+  // *** Function call and the return value is assigned to "computerChoice" ***
+  // *** global variable ***
+  computerChoice = getComputerChoice();
+
+  // *** Function call to highlight computer's choice selection in the UI ***
+  // *** and passing a callback to revert the changes ***
+  setBotChoiceSelection(computerChoice, unsetBotChoiceSelection);
+}
+
+/***********************************************************************************
+ * Function objective: Set the UI visual effects for the computer's selection.     *
+ ***********************************************************************************/
+
+function setBotChoiceSelection(choice, callbackFunction) {
+  let botChoice = document.getElementById(`computer-${choice}`);
+
+  botChoice.classList.add("bot-choice");
+
+  // *** Calls the callback function post 1200 ms to revert changes ***
+  setTimeout(function () {
+    callbackFunction(botChoice);
+  }, 1200);
+}
+
+/***************************************************************************************
+ * Function objective: Revert the UI visual effects post the computer's selection.     *
+ ***************************************************************************************/
+
+function unsetBotChoiceSelection(tag) {
+  tag.classList.remove("bot-choice");
+}
+
+/**********************************************************************************************
+ * Function objective: Compare the player's choice and computer's choice. As this function    *
+ * contains many lines of code it is splitted and gets called.                                *
+ * It's triggered from the "click" event.                                                     *
+ **********************************************************************************************/
 
 function compareCurrentRoundResult() {
   let player = document.querySelector(".player-logo");
   let opponent = document.querySelector(".computer-logo");
 
+  // *** A function is called to display, it's a tie ***
   if (playerChoice === computerChoice) {
     setTieUiEffect(player, opponent);
   }
+
+  // *** A helper function to compare the results of player & computer's choice ***
   compareChoices(player, opponent);
 }
 
+/*******************************************************************************************
+ * Function objective: Compare the player's choice & computer's choice, and add points     *
+ * to the winner and calls a function to display the winner's visual look and loser's      *
+ * visual look. The points will be stored in the global variable.                          *
+ *******************************************************************************************/
+
 function compareChoices(player, opponent) {
-  // let player = document.querySelector(".player-logo");
-  // let opponent = document.querySelector(".computer-logo");
   let playerBox = document.querySelector(".player-container");
   let computerBox = document.querySelector(".computer-container");
   let playerScoreCard = document.querySelector(
@@ -145,174 +252,41 @@ function compareChoices(player, opponent) {
   }
 }
 
-/***********************************************************************************
- * Function objective: It's a helper function to call "input comparison" function  *
- ***********************************************************************************/
-
-// function playGame() {
-//   playRound(getComputerChoice(), getHumanChoice());
-//   playRound(getComputerChoice(), getHumanChoice());
-//   playRound(getComputerChoice(), getHumanChoice());
-//   playRound(getComputerChoice(), getHumanChoice());
-//   playRound(getComputerChoice(), getHumanChoice());
-// }
-
-/******************************************************************
- * Function objective: It's to calculate the player's scores.     *
- ******************************************************************/
-
-function scoreCalculator() {
-  if (humanScore === computerScore) {
-    console.log("THE GAME IS TIED");
-  } else if (computerScore > humanScore) {
-    console.log("YOU LOSE!!");
-    console.log(
-      `Your score is = ${humanScore}, and the computer's score is = ${computerScore}`,
-    );
-  } else if (computerScore < humanScore) {
-    console.log("YEAH! YOU WIN!!!");
-    console.log(
-      `Your score is = ${humanScore}, and the computer's score is = ${computerScore}`,
-    );
-  }
-}
-
-let playerOptions = [...document.querySelectorAll(".signs-player")];
-
-for (let option of playerOptions) {
-  option.addEventListener("mouseenter", setHoverEffect);
-  option.addEventListener("mouseleave", unsetHoverEffect);
-  option.addEventListener("mousedown", setMousepressEffect);
-  option.addEventListener("mouseup", unsetMousepressEffect);
-  option.addEventListener("click", getHumanChoice);
-  option.addEventListener("click", compareCurrentRoundResult);
-}
-
-function setHoverEffect(e) {
-  let currentSelection = e.target;
-  let title = currentSelection.firstElementChild;
-
-  currentSelection.style.cssText =
-    "transform: scale(1.1); border: solid 5px #000; background-color: #eddd34; border-radius: 0; box-shadow: 0 0 0 3px #202a2f;";
-  title.style.color = "#000";
-}
-
-function unsetHoverEffect(e) {
-  let currentSelection = e.target;
-  let title = currentSelection.firstElementChild;
-
-  currentSelection.style = "";
-  title.style.color = "#fff";
-}
-
-function setMousepressEffect(e) {
-  let currentSelection = e.target;
-
-  while (!currentSelection.id) {
-    let target = currentSelection.parentNode;
-    currentSelection = target;
-  }
-
-  let button = document.querySelector(`#${currentSelection.id} .choice button`);
-  let icon = document.querySelector(
-    `#${currentSelection.id} .choice button img`,
-  );
-
-  currentSelection.style.backgroundColor = "#000";
-  currentSelection.firstElementChild.style.color = "#fff";
-  currentSelection.lastElementChild.style.backgroundColor = "#eddd34";
-  button.style.backgroundColor = "#eddd34";
-  icon.style.backgroundColor = "#eddd34";
-}
-
-function unsetMousepressEffect(e) {
-  let currentSelection = e.target;
-
-  while (!currentSelection.id) {
-    let target = currentSelection.parentNode;
-    currentSelection = target;
-  }
-
-  let button = document.querySelector(`#${currentSelection.id} .choice button`);
-  let icon = document.querySelector(
-    `#${currentSelection.id} .choice button img`,
-  );
-
-  setTimeout(() => {
-    currentSelection.style.backgroundColor = "";
-    currentSelection.firstElementChild.style.color = "";
-    currentSelection.lastElementChild.style.backgroundColor = "";
-    button.style.backgroundColor = "";
-    icon.style.backgroundColor = "";
-  }, 1200);
-}
-
-function getHumanChoice(e) {
-  let currentSelection = e.target;
-
-  while (!currentSelection.id) {
-    let target = currentSelection.parentNode;
-    currentSelection = target;
-  }
-
-  switch (currentSelection.id) {
-    case "player-rock":
-      playerChoice = "rock";
-      break;
-    case "player-paper":
-      playerChoice = "paper";
-      break;
-    case "player-scissors":
-      playerChoice = "scissors";
-      break;
-  }
-  computerChoice = getComputerChoice();
-  setBotChoiceSelection(computerChoice, unsetBotChoiceSelection);
-}
-
-/**********************************************************************************
- * Function objective: Set the UI visual effects for the computer's selection     *
- **********************************************************************************/
-
-function setBotChoiceSelection(choice, callbackFunction) {
-  let botChoice = document.getElementById(`computer-${choice}`);
-
-  botChoice.classList.add("bot-choice");
-
-  setTimeout(function () {
-    callbackFunction(botChoice);
-  }, 1200);
-}
-
 /*************************************************************************************
- * Function objective: Revert the UI visual effects for the computer's selection     *
+ * Function objective: To announce the winner with visual effects in the UI.         *
  *************************************************************************************/
-
-function unsetBotChoiceSelection(tag) {
-  tag.classList.remove("bot-choice");
-}
 
 function setWinnerUiEffect(icon, optionContainer) {
   icon.style.cssText =
     "background-color: #99D987; box-shadow: 15px 15px 10px #abf296";
   optionContainer.style.cssText =
     "background-color: #99D987; box-shadow: 15px 15px 10px #abf296";
+
   setTimeout(function () {
     icon.style = "";
     optionContainer.style = "";
   }, 1200);
 }
 
+/*************************************************************************************
+ * Function objective: To announce the loser with visual effects in the UI.          *
+ *************************************************************************************/
+
 function setLoserUiEffect(icon, optionContainer) {
   icon.style.cssText =
     "background-color: #D0857D; box-shadow: 15px 15px 10px #e8948b";
   optionContainer.style.cssText =
     "background-color: #D0857D; box-shadow: 15px 15px 10px #e8948b";
+
   setTimeout(function () {
     icon.style = "";
     optionContainer.style = "";
   }, 1200);
 }
+
+/**********************************************************************************************
+ * Function objective: To announce that this round is a tie with visual effects in the UI     *
+ **********************************************************************************************/
 
 function setTieUiEffect(iconPlayer, iconBot) {
   let icons = [iconPlayer, iconBot];
@@ -324,6 +298,7 @@ function setTieUiEffect(iconPlayer, iconBot) {
   for (let icon of icons) {
     icon.style.cssText =
       "background-color: #f7f8f4; box-shadow: 15px 15px 10px #ffffff";
+
     setTimeout(function () {
       icon.style = "";
     }, 1200);
@@ -332,11 +307,16 @@ function setTieUiEffect(iconPlayer, iconBot) {
   for (let optionContainer of optionContainers) {
     optionContainer.style.cssText =
       "background-color: #f7f8f4; box-shadow: 15px 15px 10px #ffffff";
+
     setTimeout(function () {
       optionContainer.style = "";
     }, 1200);
   }
 }
+
+/*****************************************************************************************
+ * Function objective: Update the scores and keeps track of it until it reaches "5".     *
+ *****************************************************************************************/
 
 function setScore(scoreValue, targetElem) {
   targetElem.style.cssText =
@@ -347,12 +327,18 @@ function setScore(scoreValue, targetElem) {
     targetElem.style = "";
   }, 1200);
 
+  // *** If player (or) computer score reaches "5", a function is called to end the game ***
   if (scoreValue === 1) {
     setTimeout(function () {
       playEnd(targetElem.id);
     }, 1200);
   }
 }
+
+/*******************************************************************************************
+ * Function objective: Set all the existing elements in the <body>'s display property      *
+ * to none. Create a new content to announce the player's result.                          *
+ *******************************************************************************************/
 
 function playEnd(targetId) {
   let body = document.querySelector("body");
@@ -366,8 +352,8 @@ function playEnd(targetId) {
   let result = document.createElement("section");
   let resultHeader = document.createElement("h1");
   let retryButton = document.createElement("button");
-  let resultText;
   let buttonText = document.createTextNode("RETRY ↻");
+  let resultText;
   let color;
 
   result.classList.add("final-result");
@@ -391,19 +377,32 @@ function playEnd(targetId) {
   body.appendChild(result);
   body.parentElement.style.transition = "all .7s ease-in-out";
   body.parentElement.style.backgroundColor = color;
+
   setTimeout(function () {
     result.style.transform = "rotate(360deg)";
   }, 100);
 
   let button = document.querySelector(".retry");
 
+  /**********************************************************************************
+   * Event Listeners objective: This dynamically created button will                *
+   * let the player return to the homepage.                                         *
+   **********************************************************************************/
+
   button.addEventListener("click", playAgain);
 }
+
+/**************************************************************************************
+ * Function objective: Revert the changes made by the "playEnd()". The dynamically    *
+ * created content will be removed from the DOM and reloads the homepage              *
+ * to play multiple rounds.                                                           *
+ **************************************************************************************/
 
 function playAgain() {
   let body = document.querySelector("body");
   let childElements = body.children;
 
+  // *** A helper function call to reset scores ***
   resetScorePoints();
   for (let childElem of childElements) {
     childElem.style.display = "";
@@ -414,6 +413,11 @@ function playAgain() {
   removeElem.remove();
   document.documentElement.style = "";
 }
+
+/*****************************************************************************************
+ * Function objective: Refreshes both the player and computer's scores after every       *
+ * full round and also sets the global variable values to "0" as well.                   *
+ *****************************************************************************************/
 
 function resetScorePoints() {
   let scorePoints = [...document.querySelectorAll(".current-score p")];
