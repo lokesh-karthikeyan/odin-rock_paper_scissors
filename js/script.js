@@ -122,6 +122,8 @@ function setHoverEffect(e) {
   let currentSelection = e.target;
   let title = currentSelection.firstElementChild;
 
+  currentSelection.style.cssText =
+    "transform: scale(1.1); border: solid 5px #000; background-color: #eddd34; color: #000; border-radius: 0; box-shadow: 0 0 0 3px #202a2f;";
   title.style.color = "#000";
 }
 
@@ -129,6 +131,7 @@ function unsetHoverEffect(e) {
   let currentSelection = e.target;
   let title = currentSelection.firstElementChild;
 
+  currentSelection.style = "";
   title.style.color = "#fff";
 }
 
@@ -165,11 +168,13 @@ function unsetMousepressEffect(e) {
     `#${currentSelection.id} .choice button img`,
   );
 
-  currentSelection.style.backgroundColor = "";
-  currentSelection.firstElementChild.style.color = "#000";
-  currentSelection.lastElementChild.style.backgroundColor = "";
-  button.style.backgroundColor = "";
-  icon.style.backgroundColor = "";
+  setTimeout(() => {
+    currentSelection.style.backgroundColor = "";
+    currentSelection.firstElementChild.style.color = "";
+    currentSelection.lastElementChild.style.backgroundColor = "";
+    button.style.backgroundColor = "";
+    icon.style.backgroundColor = "";
+  }, 500);
 }
 
 function getHumanChoice(e) {
