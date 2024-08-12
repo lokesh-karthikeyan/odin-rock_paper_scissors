@@ -9,3 +9,12 @@ In order to create this game, `JavaScript` programming language was used as a lo
 ## Objective
 
 The primary objective of this project is to familiarize with the `JavaScript` concepts and with the `HTML` and `CSS` concepts that has been covered in this course so far.
+
+## Credits
+
+Credits to `Freepik`, `juicy_fish`, `Dreamcreateicons` and `Mihimihi` for providing free to use icons from [Flaticon](https://www.flaticon.com).
+
+* [Freepik](https://www.flaticon.com/authors/freepik)
+* [juicy_fish](https://www.flaticon.com/authors/juicy-fish)
+* [Dreamcreateicons](https://www.flaticon.com/authors/dreamcreateicons)
+* [Mihimihi](https://www.flaticon.com/authors/Mihimihi)
