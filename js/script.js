@@ -328,7 +328,7 @@ function setScore(scoreValue, targetElem) {
   }, 1200);
 
   // *** If player (or) computer score reaches "5", a function is called to end the game ***
-  if (scoreValue === 1) {
+  if (scoreValue === 5) {
     setTimeout(function () {
       playEnd(targetElem.id);
     }, 1200);
