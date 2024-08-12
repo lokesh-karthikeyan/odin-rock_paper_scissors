@@ -176,6 +176,7 @@ html {
 /*------ FOOTER ------*/
 
 .footer-content {
+  font-family: "Pixelify Sans", sans-serif;
   font-size: .7em;
   font-weight: bold;
   margin-top: 120px;
